@@ -39,7 +39,7 @@ void	create_map_copy(t_data *data)
 // i think this is it
 // at the endge of each wall, there should be no leaks
 // as in no 0 at the end
-
+/*
 int leak_found(t_data *data, int pos_y, int pos_x)
 {
   int map_width = data->map_width;
@@ -61,7 +61,33 @@ if (pos_y == 0 && data->map_copy[pos_y][pos_x] == '0')
     return 0;
 }
   return 0;
+}*/
+int leak_found(t_data *data, int pos_y, int pos_x)
+{
+  //int map_width = data->map_width;
+  // pos_x and map height comp is illogical because x is for width 
+  char *line = data->map_copy[pos_y];
+  if ((pos_x == ft_strlen(line) - 1) && data->map_copy[pos_y][pos_x] != '1')
+  {
+    //printf("char in question: %c\n", data->map_copy[pos_y][pos_x]);
+    ft_exit_failure(data, "{-} Error, leak found on the map's edge! 2");
+    return 0;
+  }
+  if (pos_x == 0 && data->map_copy[pos_y][pos_x] != '1')
+  {
+    ft_exit_failure(data, "{-} Error, leak found on the map's edge! 3");
+    return 0;
+  }
+  if (pos_y == 0 && data->map_copy[pos_y][pos_x] != '1')
+  {
+    // this handles the top wall
+    ft_exit_failure(data, "{-} Error, leak found on the map's edge! 4");
+    return 0;
+  }
+  return 0;
 }
+
+
 
 void	flood_fill(t_data *data, int pos_x, int pos_y, char player_char)
 {
@@ -87,4 +113,5 @@ void	invoke_flood(t_data *data)
 	pos_y = data->player_position.y;
 	flood_fill(data, pos_x, pos_y, data->player_char);
 }
+
 
