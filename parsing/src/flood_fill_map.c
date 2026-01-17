@@ -29,6 +29,9 @@ void	create_map_copy(t_data *data)
 		i++;
 	}
 }
+// TODO: check if spaces are inside the map either newline or ' '
+// this is not a problem because it's out of bonds for the player so we can argue that i treated it like a space
+// i only treated it as invalid if it's in the bounds of the player himself
 
 // found the fix i just need to make sure that 0 is not at the start of anything or at the end of anything!
 // TODO:
