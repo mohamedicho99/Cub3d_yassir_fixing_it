@@ -66,8 +66,6 @@ void	get_ceiling(t_data *data, char *line)
 	{
 		if (data->ceiling[0] != -1)
 			ft_exit_failure(data, "{-} Ceiling is duplicated!");
-    // TODO: you use to split after 2 chars now you have to find the F and just from it
-    // without that + 2 because  split takes care of the spaces for you 
 		matrix = ft_split(index + 2, ',');
 		while (matrix[i])
 			i++;
@@ -92,8 +90,6 @@ void	get_floor(t_data *data, char *line)
 	{
 		if (data->floor[0] != -1)
 			ft_exit_failure(data, "{-} Floor is duplicated!");
-    // TODO: you use to split after 2 chars now you have to find the F and just from it
-    // without that + 2 because  split takes care of the spaces for you 
 		matrix = ft_split(index + 2, ',');
 		while (matrix[i])
 			i++;
