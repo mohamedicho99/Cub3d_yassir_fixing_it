@@ -4,26 +4,14 @@
 
 
              SO          textures/so_matrix.xpm
-
-
-
-
-
-
-
-
-
-
 WE          textures/we_matrix.xpm
-
-
-
 
 
 
 
    EA textures/ea_matrix.xpm
 
+    F                    220,100,0  
 
 
 
@@ -31,17 +19,7 @@ WE          textures/we_matrix.xpm
 
 
 
-
-
-
-
-F 220,100,0
-
-
-
-
-
-C 50,50,80
+                C                     50,           50,80
 
   111
 1111011111

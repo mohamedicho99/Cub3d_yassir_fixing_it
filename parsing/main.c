@@ -59,10 +59,11 @@ void	parsing(char *file_str, t_data *data)
 	get_file_data(data);
 	extract_textures(data);
   validate_textures(data);
+	extract_floor_and_ceiling(data);
+  // figure out where do you validate floor and ceiling
   debug_printf(data);
   printf("{+} stop sign\n");
   exit(0);
-	extract_floor_and_ceiling(data);
 	check_ranges(data);
 	printf("-----------------------------------\n");
 	do_premap_elements_exist(data);
