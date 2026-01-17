@@ -39,15 +39,16 @@ void	create_map_copy(t_data *data)
 
 int leak_found(t_data *data, int pos_y, int pos_x)
 {
-  int map_height = data->map_height;
-  if (pos_x == map_height && data->map_copy[pos_y][pos_x] == '0')
+  int map_width = data->map_width;
+  // pos_x and map height comp is illogical because x is for width 
+  if (pos_x == map_width && data->map_copy[pos_y][pos_x] == '0')
   {
-    ft_exit_failure(data, "{-} Error, leak found on the map's edge!");
+    ft_exit_failure(data, "{-} Error, leak found on the map's edge! 1234");
     return 0;
   }
   if (pos_x == 0 && data->map_copy[pos_y][pos_x] == '0')
   {
-    ft_exit_failure(data, "{-} Error, leak found on the map's edge!");
+    ft_exit_failure(data, "{-} Error, leak found on the map's edge! 2");
     return 0;
   }
   return 0;
@@ -60,7 +61,7 @@ void	flood_fill(t_data *data, int pos_x, int pos_y, char player_char)
 	if (data->map_copy[pos_y][pos_x] == '1' || data->map_copy[pos_y][pos_x] == 'X')
 		return ;
 	if (data->map_copy[pos_y][pos_x] == ' ' || data->map_copy[pos_y][pos_x] == '\0' || leak_found(data, pos_y, pos_x))
-		ft_exit_failure(data, "{-} Error , leak found on the maps edge!");
+		ft_exit_failure(data, "{-} Error , leak found on the maps edge! 3");
 	data->map_copy[pos_y][pos_x] = 'X';
 	flood_fill(data, pos_x + 1, pos_y, player_char);
 	flood_fill(data, pos_x - 1, pos_y, player_char);
