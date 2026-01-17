@@ -18,6 +18,7 @@ void	get_no_texture(t_data *data, char *line)
   char  *index;
 
 	text = NULL;
+	index = NULL;
 	if ((index = ft_strnstr(line, "NO ", ft_strlen(line))))
 	{
 		if (data->no_texture)
@@ -35,11 +36,12 @@ void	get_so_texture(t_data *data, char *line)
   char  *index;
 
 	text = NULL;
-	if (ft_strnstr(line, "SO ", 3))
+	index = NULL;
+	if ((index = ft_strnstr(line, "SO ", ft_strlen(line))))
 	{
 		if (data->so_texture)
 			ft_exit_failure(data, "{-} duplicated texture!");
-		text = ft_strtrim(line + 3, " \t\n");
+		text = ft_strtrim(index + 3, " \t\n");
 		data->so_texture = ft_strdup(text);
 		free(text);
 		text = NULL;
@@ -49,13 +51,15 @@ void	get_so_texture(t_data *data, char *line)
 void	get_ea_texture(t_data *data, char *line)
 {
 	char	*text;
+  char  *index;
 
 	text = NULL;
-	if (ft_strnstr(line, "EA ", 3))
+	index = NULL;
+	if ((index = ft_strnstr(line, "EA ", ft_strlen(line))))
 	{
 		if (data->ea_texture)
 			ft_exit_failure(data, "{-} duplicated texture!");
-		text = ft_strtrim(line + 3, " \t\n");
+		text = ft_strtrim(index + 3, " \t\n");
 		data->ea_texture = ft_strdup(text);
 		free(text);
 		text = NULL;
@@ -65,13 +69,15 @@ void	get_ea_texture(t_data *data, char *line)
 void	get_we_texture(t_data *data, char *line)
 {
 	char	*text;
+  char  *index;
 
 	text = NULL;
-	if (ft_strnstr(line, "WE ", 3))
+  index = NULL;
+	if ((index = ft_strnstr(line, "WE ", ft_strlen(line))))
 	{
 		if (data->we_texture)
 			ft_exit_failure(data, "{-} duplicated texture!");
-		text = ft_strtrim(line + 3, " \t\n");
+		text = ft_strtrim(index + 3, " \t\n");
 		data->we_texture = ft_strdup(text);
 		free(text);
 		text = NULL;
