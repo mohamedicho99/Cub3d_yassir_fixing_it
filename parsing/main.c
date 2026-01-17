@@ -65,10 +65,8 @@ void	parsing(char *file_str, t_data *data)
   printf("--------------- pre map stop sign --------------------\n");
 	extract_map(data);
   print_map(data->map, data->map_height);
-  //debug_printf(data);
+  map_validation(data);
   printf("{+} stop sign\n");
-  exit(0);
-	map_validation(data);
   printf("--------------- we got here sign --------------------\n");
 	create_map_copy(data);
 	invoke_flood(data);
@@ -77,6 +75,8 @@ void	parsing(char *file_str, t_data *data)
 	printf("x : %d, y : %d\n", data->player_position.x,
 		data->player_position.y);
 	print_map(data->map_copy, data->map_height);
+  exit(0);
+  //debug_printf(data);
 	// free_data(data);
 }
 

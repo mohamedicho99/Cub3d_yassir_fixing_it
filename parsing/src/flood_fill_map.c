@@ -30,17 +30,37 @@ void	create_map_copy(t_data *data)
 	}
 }
 
+// found the fix i just need to make sure that 0 is not at the start of anything or at the end of anything!
+// TODO:
+//
+// i think this is it
+// at the endge of each wall, there should be no leaks
+// as in no 0 at the end
+
+int leak_found(t_data *data, int pos_y, int pos_x)
+{
+  int map_height = data->map_height;
+  if (pos_x == map_height && data->map_copy[pos_y][pos_x] == '0')
+  {
+    ft_exit_failure(data, "{-} Error, leak found on the map's edge!");
+    return 0;
+  }
+  if (pos_x == 0 && data->map_copy[pos_y][pos_x] == '0')
+  {
+    ft_exit_failure(data, "{-} Error, leak found on the map's edge!");
+    return 0;
+  }
+  return 0;
+}
+
 void	flood_fill(t_data *data, int pos_x, int pos_y, char player_char)
 {
-	if ((pos_x < 0 || pos_y < 0) || (pos_x >= data->map_width - 1)
-		|| (pos_y >= data->map_height))
+	if ((pos_x < 0 || pos_y < 0) || (pos_x >= data->map_width - 1) || (pos_y >= data->map_height))
 		return ;
-	if (data->map_copy[pos_y][pos_x] == '1'
-		|| data->map_copy[pos_y][pos_x] == 'X')
+	if (data->map_copy[pos_y][pos_x] == '1' || data->map_copy[pos_y][pos_x] == 'X')
 		return ;
-	if (data->map_copy[pos_y][pos_x] == ' '
-		|| data->map_copy[pos_y][pos_x] == '\0')
-		ft_exit_failure(data, "{-} Error , went out of bounds");
+	if (data->map_copy[pos_y][pos_x] == ' ' || data->map_copy[pos_y][pos_x] == '\0' || leak_found(data, pos_y, pos_x))
+		ft_exit_failure(data, "{-} Error , leak found on the maps edge!");
 	data->map_copy[pos_y][pos_x] = 'X';
 	flood_fill(data, pos_x + 1, pos_y, player_char);
 	flood_fill(data, pos_x - 1, pos_y, player_char);
