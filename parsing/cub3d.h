@@ -163,5 +163,6 @@ int						handle_close(e_data *data);
 void					cleanup_and_exit(e_data *data);
 void					my_pixel_put(e_data *data, int x, int y, int color);
 void					init_dirplane(e_data *d, t_data *pdata);
+void          is_valid_map_char(t_data *data);
 
 #endif

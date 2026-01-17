@@ -14,32 +14,33 @@
 
 int	is_config_line(char *line)
 {
-	if (ft_strnstr(line, "NO ", 3) || ft_strnstr(line, "EA ", 3)
-		|| ft_strnstr(line, "SO ", 3) || ft_strnstr(line, "WE ", 3))
+	if (ft_strnstr(line, "NO ", ft_strlen(line)) || ft_strnstr(line, "EA ", ft_strlen(line))
+		|| ft_strnstr(line, "SO ", ft_strlen(line)) || ft_strnstr(line, "WE ", ft_strlen(line)))
 	{
 		return (1);
 	}
-	if (ft_strnstr(line, "F ", 2) || ft_strnstr(line, "C ", 2))
+	if (ft_strnstr(line, "F ", ft_strlen(line)) || ft_strnstr(line, "C ", ft_strlen(line)))
 	{
 		return (1);
 	}
 	return (0);
 }
 
+int not_map_line(char *line)
+{
+  if (is_config_line(line) || ft_strlen(line) < 3 || line[0] == '\n')
+    return (1);
+  return (0);
+}
+
 int	return_map_index(t_data *data)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
-	while (data->file_data[i])
-	{
-		if (is_config_line(data->file_data[i]))
-			j++;
-		i++;
-	}
-	return (j);
+	while (data->file_data[i] && not_map_line(data->file_data[i]))
+    i++;
+	return (i);
 }
 
 void	rm_newline_from_map_lines(t_data *data)
@@ -67,7 +68,7 @@ void	extract_map(t_data *data)
 	int	i;
 	int	j;
 
-	start_index = return_map_index(data) + 1;
+	start_index = return_map_index(data);
 	i = start_index;
 	get_map_width(data, start_index);
 	get_map_height(data, start_index);

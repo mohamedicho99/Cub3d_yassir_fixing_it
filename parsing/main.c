@@ -60,22 +60,22 @@ void	parsing(char *file_str, t_data *data)
 	extract_textures(data);
   validate_textures(data);
 	extract_floor_and_ceiling(data);
-  // figure out where do you validate floor and ceiling
-  debug_printf(data);
+	check_ranges(data);
+	do_premap_elements_exist(data);
+  printf("--------------- pre map stop sign --------------------\n");
+	extract_map(data);
+  print_map(data->map, data->map_height);
+  //debug_printf(data);
   printf("{+} stop sign\n");
   exit(0);
-	check_ranges(data);
-	printf("-----------------------------------\n");
-	do_premap_elements_exist(data);
-	extract_map(data);
 	map_validation(data);
+  printf("--------------- we got here sign --------------------\n");
 	create_map_copy(data);
 	invoke_flood(data);
 	printf("map height : %d, map width : %d\n", data->map_height,
 		data->map_width);
 	printf("x : %d, y : %d\n", data->player_position.x,
 		data->player_position.y);
-	print_map(data->map, data->map_height);
 	print_map(data->map_copy, data->map_height);
 	// free_data(data);
 }
