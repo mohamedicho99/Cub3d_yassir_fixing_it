@@ -54,6 +54,12 @@ int leak_found(t_data *data, int pos_y, int pos_x)
     ft_exit_failure(data, "{-} Error, leak found on the map's edge! 2");
     return 0;
   }
+	// if pos_y == 0 && data->map_copy[pos_y][pos_x] == '0'
+if (pos_y == 0 && data->map_copy[pos_y][pos_x] == '0') 
+{
+	ft_exit_failure(data, "{-} Error, leak found on the map's edge! 55");
+    return 0;
+}
   return 0;
 }
 
@@ -81,3 +87,4 @@ void	invoke_flood(t_data *data)
 	pos_y = data->player_position.y;
 	flood_fill(data, pos_x, pos_y, data->player_char);
 }
+
